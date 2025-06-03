@@ -5,7 +5,8 @@ namespace app\modules\controllers;
 use Yii;
 use yii\web\Controller;
 use app\modules\models\Admin;
-use app\models\Products;
+use app\models\User;
+use app\modules\models\Products;
 
 /**
  * Default controller for the `modules` module
@@ -57,8 +58,30 @@ class DefaultController extends Controller
         return $this->render('index', ['data' => $data]);
     }
 
+
+
     public function actionUser()
     {
-        return $this->render('user');
+
+        $users = User::find()->all();
+        return $this->render('user', ['users' => $users]);
+    }
+
+    public function actionUserEdit()
+    {
+
+
+        return $this->render('user-edit', [
+            'user' => Yii::$app->user->identity,
+        ]);
+    }
+
+    public function actionProducts()
+    {
+        $products = Products::find()->all();
+        $profit = Products::getExpectedProfit();
+        $lowStockCount = Admin::getLowStockProductCount(10);
+        $outOfStockCount = Admin::getOutOfStockProductCount();
+        return $this->render('products', ['products' => $products, 'profit' => $profit, 'lowStockCount' => $lowStockCount, 'outOfStockCount' => $outOfStockCount]);
     }
 }

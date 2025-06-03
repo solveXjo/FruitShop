@@ -5,6 +5,8 @@ namespace app\modules;
 use Yii;
 use yii\helpers\Url;
 
+use yii\filters\AccessControl;
+
 /**
  * modules module definition class
  */
@@ -29,5 +31,26 @@ class Admin extends \yii\base\Module
         //     Yii::$app->response->redirect(Url::home());
         //     exit;
         // }
+    }
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->role === 'admin';
+                        },
+                        'denyCallback' => function ($rule, $action) {
+                            return Yii::$app->response->redirect(['/site/index']);
+                        }
+                    ],
+                ],
+            ],
+        ];
     }
 }
