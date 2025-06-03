@@ -201,7 +201,7 @@ $this->title = 'FruitShop - Altibbi';
                                 </span>
                             </div>
                         </div>
-                        <img src="assets/img/a.jpg" alt="">
+                        <img src=<?php echo \yii\helpers\BaseUrl::to('@web/assets/img/a.jpg') ?> alt="">
                     </div>
                 </div>
                 <!--Content Column-->
@@ -241,7 +241,7 @@ $this->title = 'FruitShop - Altibbi';
                     <div class="testimonial-sliders">
                         <div class="single-testimonial-slider">
                             <div class="client-avater">
-                                <img src="assets/img/avaters/avatar1.png" alt="">
+                                <img src=<?php echo \yii\helpers\BaseUrl::to('@web/assets/img/avaters/avatar1.png') ?> alt="">
                             </div>
                             <div class="client-meta">
                                 <h3>Saira Hakim <span>Local shop owner</span></h3>
@@ -255,7 +255,7 @@ $this->title = 'FruitShop - Altibbi';
                         </div>
                         <div class="single-testimonial-slider">
                             <div class="client-avater">
-                                <img src="assets/img/avaters/avatar2.png" alt="">
+                                <img src=<?php echo \yii\helpers\BaseUrl::to('@web/assets/img/avaters/avatar2.png') ?> alt="">
                             </div>
                             <div class="client-meta">
                                 <h3>David Niph <span>Local shop owner</span></h3>
@@ -269,7 +269,7 @@ $this->title = 'FruitShop - Altibbi';
                         </div>
                         <div class="single-testimonial-slider">
                             <div class="client-avater">
-                                <img src="assets/img/avaters/avatar3.png" alt="">
+                                <img src=<?php echo \yii\helpers\BaseUrl::to('@web/assets/img/avaters/avatar3.png') ?> alt="">
                             </div>
                             <div class="client-meta">
                                 <h3>Jacob Sikim <span>Local shop owner</span></h3>
@@ -392,34 +392,6 @@ $this->title = 'FruitShop - Altibbi';
         </div>
     </div>
     <!-- end latest news -->
-
-    <!-- logo carousel -->
-    <div class="logo-carousel-section">
-        <div class="">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="logo-carousel-inner">
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/1.png" alt="">
-                        </div>
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/2.png" alt="">
-                        </div>
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/3.png" alt="">
-                        </div>
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/4.png" alt="">
-                        </div>
-                        <div class="single-logo-item">
-                            <img src="assets/img/company-logos/5.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- end logo carousel -->
 
     <!-- footer -->
     <div class="footer-area">

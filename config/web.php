@@ -43,11 +43,20 @@ $config = [
         ],
         'db' => $db,
 
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => [
-            ],
+            'rules' => [],
+        ],
+
+
+    ],
+
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin',
+            // ... other configurations for the module ...
         ],
     ],
     'params' => $params,

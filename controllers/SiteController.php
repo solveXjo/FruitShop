@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\SignupForm;
 use app\models\ContactForm;
 
 class SiteController extends Controller
@@ -20,11 +21,16 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::class,
-                'only' => ['logout'],
+                'only' => ['login', 'logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
+                        'actions' => ['login', 'signup'],
+                        'roles' => ['?'],
+                    ],
+                    [
+                        'allow' => true,
+                        'actions' => ['logout'],
                         'roles' => ['@'],
                     ],
                 ],
@@ -86,6 +92,27 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionSignup()
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            return $this->goBack();
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+
+
+        $model->password = '';
+        return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
     /**
      * Logout action.
      *
@@ -124,5 +151,29 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+    /** Displays shop page 
+     * @return string
+     */
+
+
+    /**
+     * Displays shop page.
+     *
+     * @return string
+     */
+    public function actionShop()
+    {
+        $showProducts = \app\models\Products::find()->all();
+        if ($showProducts === null) {
+            Yii::$app->session->setFlash('error', 'No products found.');
+            return $this->render('shop', ['products' => []]);
+        }
+        return $this->render('shop', ['products' => $showProducts]);
+    }
+
+    public function actionUserCart()
+    {
+        return $this->render('user-cart');
     }
 }

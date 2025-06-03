@@ -9,6 +9,7 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\bootstrap5\Html;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 
@@ -27,7 +28,7 @@ $this->beginPage();
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <link rel="shortcut icon" type="image/png" href="<?= \yii\helpers\Url::to('@web/assets/img/favicon.png') ?>">
+    <link rel="shortcut icon" type="image/png" href="<?= Url::to('@web/assets/img/favicon.png') ?>">
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
@@ -63,8 +64,15 @@ $this->beginPage();
             'options' => ['class' => 'navbar-nav'],
             'items' => [
                 ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'cart', 'url' => ['/cart/index']],
                 ['label' => 'About', 'url' => ['/site/about']],
+                ['label' => "shop", 'url' => ['site/shop']],
                 ['label' => 'Contact', 'url' => ['/site/contact']],
+                ['label' => 'User Cart', 'url' => ['/site/user-cart']],
+                ['label' => 'Signup', 'url' => ['/site/signup']],
+                !Yii::$app->user->isGuest && Yii::$app->user->identity->role == "admin"
+                    ? ['label' => 'Admin', 'url' => ['/admin/default/index']]
+                    : '',
                 Yii::$app->user->isGuest
                     ? ['label' => 'Login', 'url' => ['/site/login']]
                     : '<li class="nav-item">'
